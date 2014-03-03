@@ -37,9 +37,6 @@ mapping = {
 conn.indices.put_mapping("resume", {'properties':mapping}, [INDEX_NAME])
 """
 
-#conn.index({"title":"java软件工程师", "content":"非常精通java"}, INDEX_NAME, "test-type", id=1)
-#conn.index({"title":"前端工程师", "content":"多年javascript经验"}, INDEX_NAME, "test-type", id=2)
-
 for line in open(sys.argv[1]):
 	resume_json = json.loads(line)
 	resume_id=resume_json['_id']['$oid']
