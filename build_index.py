@@ -40,8 +40,10 @@ conn.indices.put_mapping("resume", {'properties':mapping}, [INDEX_NAME])
 for line in open(sys.argv[1]):
 	resume_json = json.loads(line)
 	resume_id=resume_json['_id']['$oid']
-	if resume_id and resume_id != "":
+	try:
 		conn.index(resume_json, INDEX_NAME, "test-type", id=resume_id)
+	except Exception, e:
+		print e
 
 conn.indices.refresh(INDEX_NAME)
 
